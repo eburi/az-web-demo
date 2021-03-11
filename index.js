@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const app = express()
 const port = process.env.port || 8080;
-const imgDirPath = path.join(__dirname, process.env.FilePath || 'assets');
+const imgDirPath = process.env.FilePath || path.join(__dirname,  'assets');
 
 app.get('/', (req, res) => {
     fs.readdir(imgDirPath, (err, files) => {
