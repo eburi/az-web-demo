@@ -3,7 +3,7 @@ const app = express()
 const port = process.env.port || 8080;
 
 app.get('/', (req, res) => {
-  res.send('Liebe Mobiliar! Ich habe leider die ' + process.env.Environment + 's Environment kaputt gemacht.')
+  res.status(200).json(process.env);
 })
 
 app.listen(port, () => {
