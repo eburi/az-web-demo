@@ -1,12 +1,23 @@
 const express = require('express')
+const path = require('path');
+const fs = require('fs');
+
 const app = express()
 const port = process.env.port || 8080;
+const imgDirPath = path.join(__dirname, process.env.FilePath || 'assets');
 
 app.get('/', (req, res) => {
-  res.status(200).json(process.env);
+    fs.readdir(imgDirPath, (err, files) => {
+        if (err) {
+            res.status(500).json(err)
+            return
+        }
+
+        res.status(200).json(files)
+    });
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port} - listing files from ${imgDirPath} (running in ${__dirname})`)
 })
 
